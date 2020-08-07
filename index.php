@@ -1,0 +1,2 @@
+<?php
+# washi ja yo
