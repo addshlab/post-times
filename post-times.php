@@ -14,9 +14,16 @@ class postTimes {
     function __construct() {
         add_action( 'rest_api_init', array( $this, 'post_times_endpoint' ) );
         add_shortcode( 'post_times_heatmap', array( $this, 'get_heatmap') );
-        add_action( 'wp_footer', array( $this, 'heatmap_js' ) );
-        add_action( 'wp_enqueue_scripts', array( $this, 'post_times_scripts' ) );
+	add_action( 'wp_enqueue_scripts', array( $this, 'post_times_scripts' ) );
+	add_action( 'wp', array( $this, 'load_heatmap_js' ) );
     }
+
+    public function load_heatmap_js() {
+        global $post;
+        if ( has_shortcode( $post->post_content, 'post_times_heatmap' ) ) {
+	    add_action( 'wp_footer', array( $this, 'heatmap_js' ) );
+	}
+    } 
 
     public function post_times_scripts() {
         wp_enqueue_style( 'post-times-style', plugins_url() . '/post-times/lib/cal-heatmap.css' );
@@ -98,5 +105,4 @@ EOT;
     }
 
 } // end class
-
 
