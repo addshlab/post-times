@@ -89,9 +89,11 @@ cal.init({
         max: "steelblue",
         empty: "#efefef"
     },
-    tooltip: true,
-    cellSize: 8,
-    highlight: ["now", now]
+    legendHorizontalPosition: 'center',
+    displayLegend: false,
+    tooltip: false,
+    cellSize: 2,
+    highlight: ["now", now],
 });
 </script> 
 EOT;
